@@ -19,11 +19,6 @@ public class MergeSorter<T> extends PreparedSorter<T> {
     @Override
     public void sort() {
         List<T> items = sort(0, data.size());
-        int i = 0;
-        for (T item : items) {
-            data.set(i, item);
-            i++;
-        }
     }
 
 
@@ -59,7 +54,12 @@ public class MergeSorter<T> extends PreparedSorter<T> {
                     firstCurrent = firstIterator.hasNext() ? firstIterator.next() : null;
                 }
             }
-
+            int index = 0;
+            for (T item: list) {
+                data.set(index+start,item);
+                index++;
+                callDataChanged(getCurrent());
+            }
             return list;
         } else if (length == 1) {
             List<T> list = new LinkedList<>();
