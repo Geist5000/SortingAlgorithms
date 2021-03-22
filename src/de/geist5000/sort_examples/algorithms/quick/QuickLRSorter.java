@@ -50,7 +50,7 @@ public class QuickLRSorter<T> extends PreparedSorter<T> {
         if (middle - start > 1) {
             sort(start, middle);
         }
-        if (end - middle > 1 && middle != start) {
+        if (end - middle > 1) {
             sort(middle, end);
         }
 

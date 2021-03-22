@@ -5,12 +5,7 @@ import de.geist5000.sort_examples.interfaces.SorterFactory;
 
 import java.util.Comparator;
 
-public class BinaryFactory implements SorterFactory {
-    @Override
-    public <T> Sorter<T> createSorter(T[] data) {
-        return createSorter(data, null);
-    }
-
+public class BinaryFactory extends SorterFactory {
     @Override
     public <T> Sorter<T> createSorter(T[] data, Comparator<T> comparator) {
         return new BinarySorter<>(data, comparator);

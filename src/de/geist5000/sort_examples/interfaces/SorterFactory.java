@@ -2,9 +2,12 @@ package de.geist5000.sort_examples.interfaces;
 
 import java.util.Comparator;
 
-public interface SorterFactory {
+public abstract class SorterFactory {
 
 
-    <T> Sorter<T> createSorter(T[] data);
-    <T> Sorter<T> createSorter(T[] data, Comparator<T> comparator);
+    public <T> Sorter<T> createSorter(T[] data) {
+        return createSorter(data, null);
+    }
+
+    public abstract <T> Sorter<T> createSorter(T[] data, Comparator<T> comparator);
 }
