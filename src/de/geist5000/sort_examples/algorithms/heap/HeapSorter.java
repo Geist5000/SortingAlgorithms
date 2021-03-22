@@ -5,7 +5,7 @@ import de.geist5000.sort_examples.utils.PreparedSorter;
 import java.util.Comparator;
 
 /**
- * builds a min heap
+ * builds a max heap
  * @param <T> the type which will get sorted
  */
 public class HeapSorter<T> extends PreparedSorter<T> {
@@ -19,12 +19,12 @@ public class HeapSorter<T> extends PreparedSorter<T> {
     public void sort() {
 
         // create a min heap
-        for(int i = data.size()/2;i<data.size();i++){
-            heapify(i);
+        for(int i = data.size()/2-1;i>=0;i--){
+            heapify(i,data.size());
         }
         for (int i = data.size()-1; i > 0; i--) {
             swapEntries(0,i);
-            heapify(0);
+            heapify(0,i);
         }
     }
 
@@ -33,25 +33,40 @@ public class HeapSorter<T> extends PreparedSorter<T> {
      * repair given heap which has max 1 wrong element in it
      * @param root the index of the root from the given subtree
      */
-    private void heapify(int root){
-        while(root > data.size()/2){
+    private void heapify(int root,int last){
+
+        while(root < data.size()/2){
             T rootElement = data.get(root);
             int leftChild = getLeftChild(root);
-            T leftChildElement = data.get(leftChild);
+            int rightChild = getRightChild(root);
 
-            if(comparator.compare(rootElement,leftChildElement)>0){
-                swapEntries(leftChild,root);
-                root = leftChild;
-            }else{
-                int rightChild = getRightChild(root);
-                T rightChildElement = data.get(rightChild);
-
-                if(comparator.compare(rootElement, rightChildElement)>0){
-                    swapEntries(root,rightChild);
-                    root = rightChild;
+            int maxChild;
+            T maxElement;
+            if(leftChild>=last){
+                break;
+            }
+            if(rightChild<last){
+                T leftElement = data.get(leftChild);
+                T rightElement = data.get(rightChild);
+                if(comparator.compare(leftElement,rightElement)<0){
+                    maxChild = rightChild;
+                    maxElement = rightElement;
                 }else{
-                    break;
+                    maxChild = leftChild;
+                    maxElement = leftElement;
                 }
+
+            }else{
+                maxChild = leftChild;
+                maxElement = data.get(maxChild);
+            }
+
+
+            if(comparator.compare(rootElement,maxElement)<0){
+                swapEntries(maxChild,root);
+                root = maxChild;
+            }else{
+                break;
             }
         }
     }
