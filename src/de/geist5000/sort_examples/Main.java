@@ -1,6 +1,6 @@
 package de.geist5000.sort_examples;
 
-import de.geist5000.sort_examples.algorithms.SortingAlgorithms;
+import de.geist5000.sort_examples.algorithms.SortingAlgorithm;
 import de.geist5000.sort_examples.dataloader.numbers.IntegerDataLoader;
 import de.geist5000.sort_examples.interfaces.DataLoader;
 import de.geist5000.sort_examples.interfaces.Sorter;
@@ -65,8 +65,8 @@ public class Main {
 
 
     private static SorterFactory chooseSortingAlgo(Scanner sc) {
-        SortingAlgorithms sorter = null;
-        SortingAlgorithms[] algos = SortingAlgorithms.values();
+        SortingAlgorithm sorter = null;
+        SortingAlgorithm[] algos = SortingAlgorithm.values();
         while (sorter == null) {
 
             System.out.println(String.format("What Sorting algorithm do you want to use? (%d-%d)", 1, algos.length));
