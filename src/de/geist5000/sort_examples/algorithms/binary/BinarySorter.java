@@ -37,7 +37,7 @@ public class BinarySorter<T> extends PreparedSorter<T> {
 
     private void insertValue(int value, int index) {
         while (value > index) {
-            data.swapEntries(value, --value);
+            swapEntries(value, --value);
         }
     }
 
@@ -46,6 +46,7 @@ public class BinarySorter<T> extends PreparedSorter<T> {
         int index = -1;
 
         while (index == -1) {
+            delayOperation();
             int current = start + (end - start) / 2;
             int diff = comparator.compare(value, data.get(current));
             if (end - start <= 1) {
