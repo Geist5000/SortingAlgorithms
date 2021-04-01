@@ -21,8 +21,10 @@ public class SelectionSorter<T> extends PreparedSorter<T> {
     @Override
     public void sort() {
         for (int start = 0; start < data.size() - 1; start++) {
+
             int min = start;
             for (int current = start + 1; current < data.size(); current++) {
+                delayOperation();
                 // min is bigger than current
                 if (comparator.compare(data.get(min), data.get(current)) >= 0) {
                     min = current;

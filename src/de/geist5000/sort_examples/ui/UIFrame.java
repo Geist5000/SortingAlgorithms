@@ -19,7 +19,7 @@ public class UIFrame extends JFrame implements SortingVisualisation<Integer> {
         // this.setSize(500, 300);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setUndecorated(true);
-        this.setTitle("Sorting visualisation!");
+        this.setTitle("Sorting visualisation");
         addComponents();
     }
 

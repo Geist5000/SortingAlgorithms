@@ -4,6 +4,7 @@ import de.geist5000.sort_examples.ui.SortingVisualisation;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 /**
  * does visualize an array of numbers with bars.
@@ -37,14 +38,6 @@ public class BarGraphCanvas extends JComponent implements SortingVisualisation<I
             throw new IllegalArgumentException("Data array needs to have 2 elements at minimum");
         }
         this.data = data;
-
-        int tmpmaxValue = data[0];
-        for (int i = 1; i < data.length; i++) {
-            if(data[i]>tmpmaxValue){
-                tmpmaxValue = data[i];
-            }
-        }
-        this.maxValue = tmpmaxValue;
         this.repaint();
     }
 
@@ -69,10 +62,14 @@ public class BarGraphCanvas extends JComponent implements SortingVisualisation<I
      */
     private void drawBars(Graphics g){
         if(data != null && data.length>=2){
-            int barWidth = calcBarWidth(data.length);
 
-            for (int i = 0; i < data.length; i++) {
-                Integer value = data[i];
+            Integer[] tmpData = Arrays.copyOf(data,data.length);
+            maxValue = getMaxValue(tmpData);
+            int barWidth = calcBarWidth(tmpData.length);
+
+
+            for (int i = 0; i < tmpData.length; i++) {
+                Integer value = tmpData[i];
                 this.drawBar(g,getBarX(i,barWidth),barWidth,value);
             }
         }
@@ -100,6 +97,17 @@ public class BarGraphCanvas extends JComponent implements SortingVisualisation<I
     }
 
 
+    private Integer getMaxValue(Integer[] data){
+        Integer tmpmaxValue = data[0];
+        for (int i = 1; i < data.length; i++) {
+            if(data[i]>tmpmaxValue){
+                tmpmaxValue = data[i];
+            }
+        }
+        return tmpmaxValue;
+    }
+
+
     /**
      * does draw the bar on the component
      * @param g the Graphics object with is given by the paint method
@@ -117,7 +125,7 @@ public class BarGraphCanvas extends JComponent implements SortingVisualisation<I
         int relativeHeight = (int) (possibleHeight * percentHeight);
         g.setColor(getForeground());
         g.fillRect(x, this.getHeight() - padding - relativeHeight, width, relativeHeight);
-        //g.setColor(getBackground());
-        //g.drawRect(x, this.getHeight() - padding - relativeHeight, width, relativeHeight);
+        g.setColor(getBackground());
+        g.drawRect(x, this.getHeight() - padding - relativeHeight, width, relativeHeight);
     }
 }

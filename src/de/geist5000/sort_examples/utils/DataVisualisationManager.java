@@ -24,7 +24,7 @@ public class DataVisualisationManager implements SortListener<Integer> {
     @Override
     public void delaySortingOperation() {
         try {
-            Thread.sleep(50);
+            Thread.sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
