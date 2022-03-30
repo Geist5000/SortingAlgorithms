@@ -29,4 +29,10 @@ public abstract class ListenableSorter<T> implements Sorter<T> {
             l.onDataChanged(data);
         }
     }
+
+    protected void delayOperation(){
+        for(SortListener<T> l : listeners){
+            l.delaySortingOperation();
+        }
+    }
 }

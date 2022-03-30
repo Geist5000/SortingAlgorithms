@@ -11,8 +11,9 @@ import de.geist5000.sort_examples.interfaces.SorterFactory;
 
 public enum SortingAlgorithm {
 
-    BUBBLE("Bubble sort", new BubbleFactory()), SELECTION("Selection sort", new SelectionFactory()), INSERTION("Insertion sort", new InsertionFactory()),
-    BINARY("Binary insertion sort", new BinaryFactory()), MERGE("Merge sort", new MergeFactory()), QUICK_LR("Quick LR Sort",new QuickLRSorterFactory()),
+    BUBBLE("Bubble sort", new BubbleFactory()), SELECTION("Selection sort", new SelectionFactory()),
+    INSERTION("Insertion sort", new InsertionFactory()),BINARY("Binary insertion sort", new BinaryFactory()),
+    MERGE("Merge sort", new MergeFactory()), QUICK_LR("Quick LR Sort",new QuickLRSorterFactory()),
     HEAP("Heap sort",new HeapFactory());
 
     SortingAlgorithm(String name, SorterFactory factory) {

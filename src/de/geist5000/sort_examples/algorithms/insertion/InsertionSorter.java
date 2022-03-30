@@ -16,6 +16,7 @@ public class InsertionSorter<T> extends PreparedSorter<T> {
     @Override
     public void sort() {
         for (int start = 1; start < data.size(); start++) {
+            delayOperation();
             int current = start;
             while (current > 0 && comparator.compare(data.get(current), data.get(current - 1)) < 0) {
                 swapEntries(current, current - 1);

@@ -39,7 +39,6 @@ public class MergeSorter<T> extends PreparedSorter<T> {
             List<T> list = new LinkedList<>();
 
             for (int i = 0; i < length; i++) {
-
                 if (secondCurrent == null) {
                     list.add(firstCurrent);
                     firstCurrent = firstIterator.hasNext() ? firstIterator.next() : null;
@@ -58,6 +57,7 @@ public class MergeSorter<T> extends PreparedSorter<T> {
             for (T item: list) {
                 data.set(index+start,item);
                 index++;
+                delayOperation();
                 callDataChanged(getCurrent());
             }
             return list;

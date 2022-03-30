@@ -20,9 +20,11 @@ public class HeapSorter<T> extends PreparedSorter<T> {
 
         // create a min heap
         for(int i = data.size()/2-1;i>=0;i--){
+            delayOperation();
             heapify(i,data.size());
         }
         for (int i = data.size()-1; i > 0; i--) {
+            delayOperation();
             swapEntries(0,i);
             heapify(0,i);
         }

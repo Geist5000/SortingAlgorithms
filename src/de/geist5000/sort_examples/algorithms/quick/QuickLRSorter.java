@@ -23,8 +23,8 @@ public class QuickLRSorter<T> extends PreparedSorter<T> {
         T pivot = data.get(getPivot(start, end));
         int lPointer = start;
         int rPointer = end - 1;
-
         while (lPointer != rPointer) {
+            delayOperation();
             if (comparator.compare(data.get(lPointer), pivot) < 0) {
                 lPointer++;
             } else if (comparator.compare(data.get(rPointer), pivot) >= 0) {
