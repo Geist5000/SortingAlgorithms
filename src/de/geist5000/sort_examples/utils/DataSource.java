@@ -1,6 +1,9 @@
 package de.geist5000.sort_examples.utils;
 
+import java.util.AbstractCollection;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class DataSource<T> {
     T[] data;
